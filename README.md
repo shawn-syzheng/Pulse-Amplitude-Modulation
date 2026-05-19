@@ -1,2 +1,2 @@
-# Pulse-Amplitude-Modulation
-This is a PAM4 signal for Keysight M8199B 256 Gsa/s DAC AWG and Keysight DSOX92504A 80 Gsa/s ADC Real time scope
+# Machine Learning Equalizers for Non-Linear Distortion in PAM4 Signals
+This work addresses the critical challenge of non-linear distortion in high-speed PAM4 optical/electrical links, which severely degrades signal integrity at advanced data rates. While conventional linear equalizers (such as FFE and DFE) struggle to mitigate complex, high-order non-linear inter-symbol interference (ISI), we propose/implement a machine learning-based equalizer. Leveraging the powerful non-linear mapping capabilities of ML models, the proposed solution effectively restores the degraded PAM4 eye diagrams, significantly reduces the bit error rate (BER), and extends the reach of next-generation high-speed communication systems.
