@@ -114,9 +114,30 @@ if fig_bottom == 1
     grid on;
 end
 %% ============================ Channel ===================================
+%% ============================ Channel ===================================
 tx6 = resample(tx5, FsADC, FsDAC);
 SNR = 20;
 rx1_simu = awgn(tx6, SNR, 'measured');
+
+% Voltera Series Non-linear Channel
+m = 3;
+h0 = 0;
+h1 = [1.58 2.33 1.81]; % Linear Term
+h2 = [0.008 0.005 0.004; 0.001 0.009 0.003; 0.008 0.002 0.007]; % Quadratic Term
+
+v = zeros(1, length(rx1_simu));
+for t = m+1:length(rx1_simu)
+    v(t) = h0 + sum(h1 .* rx1_simu(t-m:t-1));
+    for k1 = 1:m
+        for k2 = k1:m
+            v(t) = v(t) + h2(k1, k2) * rx1_simu(t-k1) * rx1_simu(t-k2);
+        end
+    end
+end
+
+% v = 1.35*rx1_simu - 0.2* rx1_simu.^2 + 0.05* rx1_simu.^3; %係數自調
+% H = [1 0.4 0.5 0.9 0.7];
+% rx1_simu = filter(H, 1, rx1_simu);
 
 % ============================ Plot Figures ============================= %
 if fig_bottom == 1
