@@ -114,7 +114,6 @@ if fig_bottom == 1
     grid on;
 end
 %% ============================ Channel ===================================
-%% ============================ Channel ===================================
 tx6 = resample(tx5, FsADC, FsDAC);
 SNR = 20;
 rx1_simu = awgn(tx6, SNR, 'measured');
